@@ -1,0 +1,13 @@
+hopsworks[python,great-expectations]==4.3.1
+pydantic-settings>=2.6.1
+openmeteo-requests
+requests-cache==1.2.0
+retry-requests==2.0.0
+xgboost==2.0.3
+nbformat
+invoke
+python-dotenv
+OSMPythonTools
+numpy
+pandas
+supabase
