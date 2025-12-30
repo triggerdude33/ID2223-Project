@@ -33,5 +33,5 @@ jobs:
         run: |
           # Konverterar notebooken till ett python-skript och kör den direkt
           # Notera stavningen från chatten: "pipline"
-          jupyter nbconvert --to python --execute "2_annual_weather_feature_pipline.ipynb"
+          jupyter nbconvert --to python --execute "2_annual_weather_feature_pipeline.ipynb"
 
