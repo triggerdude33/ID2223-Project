@@ -1,0 +1,37 @@
+name: Hourly Weather Data Ingestion
+
+on:
+  schedule:
+    # Körs vid minut 0 varje timme (t.ex. 13:00, 14:00, etc.)
+    - cron: '0 * * * *'
+  # Möjliggör manuell körning från GitHub UI för testning
+  workflow_dispatch:
+
+jobs:
+  ingest_weather_data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        # Partnern rekommenderade 3.11 för Hopsworks-kompatibilitet
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jupyter nbconvert
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Execute Notebook
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: |
+          # Konverterar notebooken till ett python-skript och kör den direkt
+          # Notera stavningen från chatten: "pipline"
+          jupyter nbconvert --to python --execute "2_annual_weather_feature_pipline.ipynb"
+
