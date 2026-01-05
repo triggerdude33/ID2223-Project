@@ -52,9 +52,9 @@ The final predicted result for a week is the sum of the three kernels.
 
 See the two below figures. 
 
-<img src="img/wm_weekly_temperature.png" alt="picture not loaded" width="300"/>
+<img src="img/wm_weekly_temperature.png" alt="weekly temperature picture not loaded" width="300"/>
 
-<img src="img/wm_yearly_temperature.png" alt="picture not loaded" width="300"/>
+<img src="img/wm_yearly_temperature.png" alt="yearly temperature picture not loaded" width="300"/>
 
 Note that for the yearly temperatures figure, it can be observed that the identical week from year to year increases by the same constant amount. This shouldn't be the case, **Weather kernel** should create slight weather chaos to the temperature values.  Hence, it could imply that the **Weather kernel** wasn't correctly setup.
 
