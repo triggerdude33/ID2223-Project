@@ -44,6 +44,24 @@ Note. "fg" stands for "feature group"
 
 ### Step 3: Weather model
 
+To predict future weather for ski resorts, we utilize a gaussian process model. The model has three different kernels, meant to model different aspects of the weather:
+* **Trend kernel**. This kernel models the climate change. It is set to force the trend to be linear. That is, each year it will increase the temperature by the same amount. 
+* **Seasonal kernel**. Models seasonal variety in temperature. It is a periodic kernel, where the period is one year. 
+* **Weather kernel**. Models the unpredictable weather chaos.
+The final predicted result for a week is the sum of the three kernels.
+
+See the two below figures. 
+
+<img src="img/wm_weekly_temperature.png" alt="picture not loaded" width="300"/>
+
+<img src="img/wm_yearly_temperature.png" alt="picture not loaded" width="300"/>
+
+Note that for the yearly temperatures figure, it can be observed that the identical week from year to year increases by the same constant amount. This shouldn't be the case, **Weather kernel** should create slight weather chaos to the temperature values.  Hence, it could imply that the **Weather kernel** wasn't correctly setup.
+
+#### Discussion
+
+To say the least, it is a bold statement to assume that climate change is linear. It could also be exponential, or perhaps polynomial. Had there been more time, we would have explored different trend kernels to model the climate trend. The different growth expectations would need to be compared using some form of metric. Thus a fitting prediction performance metric would need to be found also.
+
 ### Step 4: Shutdown model
 
 ### Step 5: Update dashboard
