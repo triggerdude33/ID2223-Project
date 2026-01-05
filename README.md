@@ -1,5 +1,7 @@
 # ID2223-Project
 
+Project page is live and can be viewed at: [https://triggerdude33.github.io/ID2223-Project/](https://triggerdude33.github.io/ID2223-Project/)
+
 ## Data sources
 We have the following dynamic data sources:
 * [Open-meteo](https://open-meteo.com)
