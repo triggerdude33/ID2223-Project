@@ -1,0 +1,46 @@
+name: Dashboard Update
+
+on:
+  schedule:
+    # Run daily at 08:00 UTC
+    - cron: '0 8 * * *'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  run-dashboard-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install jupyter nbconvert
+
+      - name: Run dashboard updater notebook
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: |
+           jupyter nbconvert --to python --execute "5_update_dashboard.ipynb"
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Commit and push dashboard updates
+        run: |
+          git add docs/*.md || true
+          git diff --cached --quiet || git commit -m "Update dashboard: $(date +'%Y-%m-%d %H:%M UTC') [skip ci]"
+          git push || echo "No changes to push"
+      - name: Show logs
+        if: always()
+        run: |
+          echo "Dashboard update completed"
+          ls -la docs/index.md || echo "No index.md file"
