@@ -1,0 +1,9 @@
+hopsworks==4.2.4
+python-dotenv
+pandas
+numpy
+tensorflow
+ipykernel
+scikit-learn
+matplotlib
+seaborn
