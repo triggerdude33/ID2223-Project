@@ -26,14 +26,15 @@ We have the following dynamic data sources:
 
 ### Overview
 
-The project is divided into 5 steps. See the table below
+The project is divided into 5 steps. See the table below.
 | Step | input | process | output |
 | --- | --- | --- | --- |
-| 1_annual_resort_feature_pipeline | ski resort info from abandoned ski towns and Open street map | from sources prepares ski resort name, latitude, longitude and id for export to hopsworks | `current_resorts` and `former_resorts` feature groups
-| 2_annual_weather_feature_pipeline | `current_resorts`, `former_resorts`, open-meteo | get historical weather data for open and closed resorts | `ski_weather` feature group
-| 3_weather_model | `current_resorts`, `ski_weather` feature groups | creates predictions for open resorts future winter climate | `predicted_ski_weather` feature group |
-| 4_shutdown_model | `closed_resorts`, `open_resorts`, `ski_weather`, `predicted_ski_weather` feature groups | trains on historical data and creates predictions for when currently open ski resorts will close down | `shutdown_predictions` feature group |
-| 5_update_dashboard | `shutdown_predictions` feature group | updates the table on the dashboard with the latest added ski resort shutdown predictions | [github page](https://triggerdude33.github.io/ID2223-Project/](https://triggerdude33.github.io/ID2223-Project/)
+| 1_annual_resort_feature_pipeline | [Abandoned ski towns](https://abandonedskitowns.com/) and [Open street map](https://www.openstreetmap.org) | from sources, prepares ski resort name, latitude, longitude and id for export to hopsworks | `current_resorts` and `former_resorts` fg
+| 2_annual_weather_feature_pipeline | `current_resorts`, `former_resorts`, open-meteo | get historical weather data for open and closed resorts | `ski_weather` fg
+| 3_weather_model | `current_resorts`, `ski_weather` fg | creates predictions for open resorts future winter climate | `predicted_ski_weather` fg |
+| 4_shutdown_model | `closed_resorts`, `open_resorts`, `ski_weather`, `predicted_ski_weather` feature groups | trains on historical data and creates predictions for when currently open ski resorts will close down | `shutdown_predictions` fg |
+| 5_update_dashboard | `shutdown_predictions` fg | updates the table on the dashboard with the latest added ski resort shutdown predictions | [github page](https://triggerdude33.github.io/ID2223-Project/)
+: Table fg stands for "feature group"
 
 ## Technologies used
 
