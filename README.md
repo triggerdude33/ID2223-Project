@@ -4,7 +4,7 @@ Project page is live and can be viewed at: [https://triggerdude33.github.io/ID22
 
 ## Introduction
 
-The aim of the project is to predict alpine ski resort closures for the next 15 years due to climate change. 
+The aim of the project is to predict ski resort closures in the European alps for the next 15 years due to climate change. 
 
 ### Prediction problem
 
@@ -21,6 +21,7 @@ We have the following dynamic data sources:
 * We assume that all ski resorts which have closed down, did so due to climate change.
 * We only look at winter season weekly weather (november-march) for predicting ski resort closure.
   * No daily temperature, snow depth or wind etc.
+* We take resorts from North America also to train shutdown model. This was due to there not being enough qualified closed ski resort samples in Europe to create a large enough training dataset.
 
 ## Method
 
@@ -37,17 +38,19 @@ The project is divided into 5 steps. See the table below.
 
 Note. "fg" stands for "feature group"
 
-## Technologies used
+### Step 1: Annual resort feature pipeline
 
+### Step 2: Annual weather feature pipeline
 
+### Step 3: Weather model
+
+### Step 4: Shutdown model
+
+### Step 5: Update dashboard
 
 
 ## Discussion
 
 If we were to input more dimensions to the shutdown model such as snow depth and wind, it will probably achieve a higher prediction rate. This would require additions to the weather_model, it would need to generate weather data for these dimensions also. 
 
-#### Abandoned ski towns
 
-* We assume that every ski resort closure registered occured due to climate change i.e lack of snow
-* We take no regard to what year ski resorts open, we only utilize the year which they close.
-* We take resorts from north America also. This was due to there not being enough qualified closed ski resort samples in Europe to create a large enough training dataset.
