@@ -28,6 +28,7 @@ We have the following dynamic data sources:
 
 The project is divided into 5 steps. See the table below
 | Step | input | process | output |
+| --- | --- | --- | --- |
 | 1 - annual_resort_feature_pipeline | ski resort info from abandoned ski towns and Open street map | from sources prepares ski resort name, latitude, longitude and id for export to hopsworks | `current_resorts` and `former_resorts` feature groups
 | 2 - annual_weather_feature_pipeline | `current_resorts`, `former_resorts`, open-meteo | get historical weather data for open and closed resorts | `ski_weather` feature group
 | 3 - weather_model | `current_resorts`, `ski_weather` feature groups | creates predictions for open resorts future winter climate | `predicted_ski_weather` feature group |
