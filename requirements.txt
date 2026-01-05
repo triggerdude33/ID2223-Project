@@ -10,4 +10,4 @@ python-dotenv
 OSMPythonTools
 numpy
 pandas
-supabase
+scikit-learn
