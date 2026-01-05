@@ -34,7 +34,8 @@ The project is divided into 5 steps. See the table below.
 | 3_weather_model | `current_resorts`, `ski_weather` fg | creates predictions for open resorts future winter climate | `predicted_ski_weather` fg |
 | 4_shutdown_model | `closed_resorts`, `open_resorts`, `ski_weather`, `predicted_ski_weather` feature groups | trains on historical data and creates predictions for when currently open ski resorts will close down | `shutdown_predictions` fg |
 | 5_update_dashboard | `shutdown_predictions` fg | updates the table on the dashboard with the latest added ski resort shutdown predictions | [github page](https://triggerdude33.github.io/ID2223-Project/)
-: Table fg stands for "feature group"
+
+Note. "fg" stands for "feautre group"
 
 ## Technologies used
 
