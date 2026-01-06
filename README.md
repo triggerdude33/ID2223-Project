@@ -38,9 +38,29 @@ The project is divided into 5 steps. See the table below.
 
 Note. "fg" stands for "feature group"
 
+Each step corresponds to a python notebook in the github repository.
+
+The goal was to have each step run as a scheduled pipeline on github. This to get an automatic update for future ski resort closures, based on the data fetched from the data sources. However, we were unable to reach this state. A large problem was the API limits for Open-Meteo. 
+
 ### Step 1: Annual resort feature pipeline
 
+Firstly, and API requesst is sent to the backend database of [Abandoned ski towns](https://abandonedskitowns.com/). From this, data for all closed down resorts are obtained. We receive name, latitude, longitude, and year which the resort closed down. Many resorts are filtered out due to two reasons:
+* The resort does not list the exact year closure
+* The resort is not located in Europe or North America
+
+Once the filtering is done, the remaining data is uploaded to hopsworks. Open resorts are uploaded to `current_resorts` and closed resorts are uploaded to `former_resorts`.
+
 ### Step 2: Annual weather feature pipeline
+
+In this step, all weather data for either closed or open resorts for a specific year is fetched. The `ski_weather` fg is downloaded. It is checked what latest year `ski_weather` contains, firstly for closed resorts and then for open resorts. Name the latest year `y`. If `y` for any resort type is found to be smaller than last year, it will download temperature data for `y+1` from Open-Meteo for all resorts for that resort type (for open resorts only data for the first 100 resorts are downloaded, see discussion paragraph below). The data received from Open-Meteo will be of the average daily temperature for the winter season months (November-March). The daily temperature data is reformatted to weekly temperature data. It is then uploaded to hopsworks.
+
+#### Discussion
+
+We were not able to fetch temperature data for all resorts at once from Open-Meteo. So the decision was made to instead fetch temperature data first for closed resorts and then for open resorts, one winter year at a time. This worked for closed resorts, but for open resorts we hit the API limit once again. To solve this, we only fetched temperatures for the first 100 open resorts and skipped predicting shutdown for the other resorts. Had there been more time, we would have modified the notebook so that it fetches all temperature data for a single year for a few resorts at a time. Then the notebook could be run on a daily pipeline, always guaranteeing some new weather data for a number of ski resorts.
+
+##### Open-Meteo API limits
+
+There is a 600 API call limit per minute to open meteo. The number of API calls corresponds to the number of dates you query for. Furthermore, you can query for the same date for several locations, and it will scale less than lineraly seen to the amount of API calls.
 
 ### Step 3: Weather model
 
@@ -64,11 +84,13 @@ To say the least, it is a bold statement to assume that climate change is linear
 
 ### Step 4: Shutdown model
 
-### Step 5: Update dashboard
-
-
-## Discussion
+#### Discussion
 
 If we were to input more dimensions to the shutdown model such as snow depth and wind, it will probably achieve a higher prediction rate. This would require additions to the weather_model, it would need to generate weather data for these dimensions also. 
+
+### Step 5: Update dashboard
+
+This step fetches all data rows from the `shutdown_predictions` feature group. It then dynamically creates a markdown table listing the data. The file `docs/index.md` in the github repository is then updated with the new markdown table. A daily pipeline schedule is currently running. It executes this step and commits the file changes made in `docs/index.md` to the github repository. This way, the dashboard [github page](https://triggerdude33.github.io/ID2223-Project/) is automatically updated.
+
 
 
