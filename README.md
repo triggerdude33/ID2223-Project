@@ -46,7 +46,7 @@ Note. "fg" stands for "feature group"
 
 Each step corresponds to a python notebook in the github repository.
 
-The goal was to have each step run as a scheduled pipeline on github. This to get an automatic update for future ski resort closures, based on the data fetched from the data sources. However, we were unable to reach this state. A large problem was the API limits for Open-Meteo. 
+The goal was to have each step run as a scheduled pipeline on github. This to get an automatic update for future ski resort closures, based on the data fetched from the data sources. However, we were unable to reach this state. A large problem was the API limits for Open-Meteo, more on this is described in Step 2.
 
 ### Step 1: Annual resort feature pipeline
 
