@@ -1,7 +1,7 @@
 # ID2223-Project
 
-Project link: https://github.com/triggerdude33/ID2223-Project 
-Project page is live and can be viewed at: [https://triggerdude33.github.io/ID2223-Project/](https://triggerdude33.github.io/ID2223-Project/)
+* Project link: https://github.com/triggerdude33/ID2223-Project 
+* Project page is live and can be viewed at: [https://triggerdude33.github.io/ID2223-Project/](https://triggerdude33.github.io/ID2223-Project/)
 
 ## Introduction
 
